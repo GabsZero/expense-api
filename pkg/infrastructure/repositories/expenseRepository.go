@@ -13,7 +13,7 @@ func (etr *ExpenseRepository) GetAll() []models.Expense {
 		panic("no db instance found")
 	}
 
-	db.Model(&expenses).Find(&expenses)
+	db.Model(&expenses).Preload("ExpenseType").Find(&expenses)
 
 	return expenses
 }
