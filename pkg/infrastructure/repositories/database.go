@@ -15,6 +15,10 @@ var db *gorm.DB
 type Repository struct {
 }
 
+func (r *Repository) GetDbInstance() *gorm.DB {
+	return db
+}
+
 func (r *Repository) StartDabase() {
 	err := godotenv.Load()
 	if err != nil {
