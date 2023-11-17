@@ -41,4 +41,6 @@ func (r *Repository) StartDabase() {
 
 	db.AutoMigrate(models.ExpenseType{})
 	db.AutoMigrate(models.Expense{})
+	db.AutoMigrate(models.IncomeType{})
+	db.AutoMigrate(models.Income{})
 }

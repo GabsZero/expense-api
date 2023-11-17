@@ -8,6 +8,36 @@ import (
 )
 
 func Populate() {
+	populateExpanses()
+	populateIncomes()
+}
+
+func populateIncomes() {
+	date, err := time.Parse("Jan 02, 2006", "Nov 01, 2023")
+	if err != nil {
+		panic(err)
+	}
+	incomes := []models.Income{
+		{
+			Name:         "Entrada de teste 1",
+			Date:         date,
+			Amount:       5600,
+			IncomeTypeId: 1,
+		},
+	}
+
+	repository := repositories.Repository{}
+	db := repository.GetDbInstance()
+	for _, income := range incomes {
+		exist := models.Income{}
+		result := db.Where("name = ?", income.Name).First(&exist)
+		if result.RowsAffected == 0 {
+			db.Create(&income)
+		}
+	}
+}
+
+func populateExpanses() {
 	date, err := time.Parse("Jan 02, 2006", "Nov 01, 2023")
 	if err != nil {
 		panic(err)
@@ -54,5 +84,4 @@ func Populate() {
 			db.Create(&expense)
 		}
 	}
-
 }
