@@ -13,7 +13,7 @@ func Populate() {
 }
 
 func populateIncomes() {
-	date, err := time.Parse("Jan 02, 2006", "Nov 01, 2023")
+	date, err := time.Parse("2006-01-02", "2023-11-01")
 	if err != nil {
 		panic(err)
 	}
