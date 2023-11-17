@@ -1,8 +1,6 @@
 package controllers
 
 import (
-	"fmt"
-
 	"github.com/gabszero/expenses-api/pkg/domain/services"
 	"github.com/gabszero/expenses-api/pkg/infrastructure/models"
 	"github.com/gin-gonic/gin"
@@ -22,7 +20,6 @@ func (ic *IncomeController) Index(context *gin.Context) {
 		})
 		return
 	}
-	fmt.Println(incomeFilter)
 	expensesType := ic.IncomeService.GetIncomes(incomeFilter)
 
 	context.JSON(200, gin.H{
