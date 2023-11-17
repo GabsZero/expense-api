@@ -3,6 +3,7 @@ package routes
 import (
 	"github.com/gabszero/expenses-api/pkg/application/routes/expenses"
 	"github.com/gabszero/expenses-api/pkg/application/routes/expensesType"
+	"github.com/gabszero/expenses-api/pkg/application/routes/incomes"
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,6 +15,9 @@ func (r *Router) StartRoutes() {
 
 	expensesRoutes := expenses.ExpensesRoutes{}
 	expensesRoutes.DefineRoutes(router)
+
+	incomeRoutes := incomes.IncomeRoutes{}
+	incomeRoutes.DefineRoutes(router)
 
 	expensesTypeRoutes := expensesType.ExpensesTypeRoutes{}
 	expensesTypeRoutes.DefineRoutes(router)

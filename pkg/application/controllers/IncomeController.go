@@ -5,13 +5,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type ExpenseController struct {
-	ExpenseService services.ExpenseService
+type IncomeController struct {
+	IncomeService services.IncomeService
 }
 
-func (etc *ExpenseController) Index(context *gin.Context) {
+func (ic *IncomeController) Index(context *gin.Context) {
 	enableCors(context)
-	expensesType := etc.ExpenseService.GetExpenses()
+	expensesType := ic.IncomeService.GetIncomes()
 
 	context.JSON(200, gin.H{
 		"expenses": expensesType,
