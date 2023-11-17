@@ -14,6 +14,6 @@ func (ic *IncomeController) Index(context *gin.Context) {
 	expensesType := ic.IncomeService.GetIncomes()
 
 	context.JSON(200, gin.H{
-		"expenses": expensesType,
+		"incomes": expensesType,
 	})
 }
