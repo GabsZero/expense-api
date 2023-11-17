@@ -9,6 +9,6 @@ type IncomeService struct {
 	IncomeRepository *repositories.IncomeRepository
 }
 
-func (is *IncomeService) GetIncomes() []models.Income {
-	return is.IncomeRepository.GetAll()
+func (is *IncomeService) GetIncomes(incomeFilter models.Income) []models.Income {
+	return is.IncomeRepository.GetAll(incomeFilter)
 }

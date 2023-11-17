@@ -7,7 +7,7 @@ import (
 type IncomeRepository struct {
 }
 
-func (ir *IncomeRepository) GetAll() []models.Income {
+func (ir *IncomeRepository) GetAll(incomeFilter models.Income) []models.Income {
 	incomes := []models.Income{}
 	if db == nil {
 		panic("no db instance found")
