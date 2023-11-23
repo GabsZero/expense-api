@@ -9,6 +9,6 @@ type ExpenseService struct {
 	ExpenseRepository *repositories.ExpenseRepository
 }
 
-func (ets *ExpenseService) GetExpenses() []models.Expense {
-	return ets.ExpenseRepository.GetAll()
+func (ets *ExpenseService) GetExpenses(filter models.Expense) []models.Expense {
+	return ets.ExpenseRepository.GetAll(filter)
 }

@@ -7,9 +7,9 @@ import (
 )
 
 type Expense struct {
-	ID                 uint `gorm:"primaryKey"`
-	Name               string
-	Date               time.Time
+	ID                 uint      `gorm:"primaryKey"`
+	Name               string    `form:"name"`
+	Date               time.Time `json:"date" form:"date" time_format:"2006-01-02"`
 	CurrentInstallment uint
 	TotalInstallments  uint
 	ExpenseTypeId      uint

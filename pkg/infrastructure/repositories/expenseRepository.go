@@ -1,19 +1,33 @@
 package repositories
 
 import (
+	"fmt"
+	"time"
+
 	"github.com/gabszero/expenses-api/pkg/infrastructure/models"
 )
 
 type ExpenseRepository struct {
 }
 
-func (etr *ExpenseRepository) GetAll() []models.Expense {
-	expenses := []models.Expense{}
+func (etr *ExpenseRepository) GetAll(filter models.Expense) []models.Expense {
+	result := []models.Expense{}
 	if db == nil {
 		panic("no db instance found")
 	}
 
-	db.Model(&expenses).Preload("ExpenseType").Find(&expenses)
+	query := db.Model(&result).Preload("ExpenseType")
+	if !filter.Date.IsZero() {
+		dateParsed, err := time.Parse("2006-01-02", filter.Date.Format("2006-01-02"))
+		fmt.Println(dateParsed)
+		if err != nil {
+			panic(err)
+		}
 
-	return expenses
+		query.Where("date = ?", dateParsed)
+	}
+
+	query.Find(&result)
+
+	return result
 }
