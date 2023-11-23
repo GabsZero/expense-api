@@ -20,9 +20,9 @@ func (ic *IncomeController) Index(context *gin.Context) {
 		})
 		return
 	}
-	expensesType := ic.IncomeService.GetIncomes(incomeFilter)
+	incomes := ic.IncomeService.GetIncomes(incomeFilter)
 
 	context.JSON(200, gin.H{
-		"incomes": expensesType,
+		"incomes": incomes,
 	})
 }
