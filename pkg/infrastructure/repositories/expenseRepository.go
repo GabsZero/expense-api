@@ -1,7 +1,6 @@
 package repositories
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/gabszero/expenses-api/pkg/infrastructure/models"
@@ -19,7 +18,6 @@ func (etr *ExpenseRepository) GetAll(filter models.Expense) []models.Expense {
 	query := db.Model(&result).Preload("ExpenseType")
 	if !filter.Date.IsZero() {
 		dateParsed, err := time.Parse("2006-01-02", filter.Date.Format("2006-01-02"))
-		fmt.Println(dateParsed)
 		if err != nil {
 			panic(err)
 		}

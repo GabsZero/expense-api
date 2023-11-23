@@ -1,8 +1,6 @@
 package controllers
 
 import (
-	"fmt"
-
 	"github.com/gabszero/expenses-api/pkg/domain/services"
 	"github.com/gabszero/expenses-api/pkg/infrastructure/models"
 	"github.com/gin-gonic/gin"
@@ -22,8 +20,6 @@ func (etc *ExpenseController) Index(context *gin.Context) {
 		})
 		return
 	}
-
-	fmt.Println(expenseFilter)
 
 	expenses := etc.ExpenseService.GetExpenses(expenseFilter)
 
