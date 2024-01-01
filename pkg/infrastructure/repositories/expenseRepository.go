@@ -17,12 +17,11 @@ func (etr *ExpenseRepository) GetAll(filter models.Expense) []models.Expense {
 
 	query := db.Model(&result).Preload("ExpenseType")
 	if !filter.Date.IsZero() {
-		dateParsed, err := time.Parse("2006-01-02", filter.Date.Format("2006-01-02"))
-		if err != nil {
-			panic(err)
-		}
+		// filter.Date.Format("2006-01-02")
+		startingDate := filter.Date.Format("2006-01-02 15:04:05")
+		endingDate := filter.Date.Add(24*time.Hour - 1).Format("2006-01-02 15:04:05")
 
-		query.Where("date = ?", dateParsed)
+		query.Where("date BETWEEN ? and ?", startingDate, endingDate)
 	}
 
 	query.Find(&result)
