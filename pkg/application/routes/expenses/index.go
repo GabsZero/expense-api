@@ -11,4 +11,5 @@ type ExpensesRoutes struct {
 func (er *ExpensesRoutes) DefineRoutes(router *gin.Engine) {
 	expenseController := controllers.ExpenseController{}
 	router.GET("/expenses", expenseController.Index)
+	router.GET("/getExpensesByMonth", expenseController.FindExpensesInAMonth)
 }
