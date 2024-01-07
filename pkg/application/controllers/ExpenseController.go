@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	dtos "github.com/gabszero/expenses-api/pkg/application/Dtos"
 	"github.com/gabszero/expenses-api/pkg/domain/services"
 	"github.com/gabszero/expenses-api/pkg/infrastructure/models"
 	"github.com/gin-gonic/gin"
@@ -22,6 +23,25 @@ func (etc *ExpenseController) Index(context *gin.Context) {
 	}
 
 	expenses := etc.ExpenseService.GetExpenses(expenseFilter)
+
+	context.JSON(200, gin.H{
+		"expenses": expenses,
+	})
+}
+
+func (etc *ExpenseController) FindExpensesInAMonth(context *gin.Context) {
+	enableCors(context)
+	monthFilter := dtos.FilterExpenseMonthDto{}
+
+	err := context.Bind(&monthFilter)
+	if err != nil {
+		context.JSON(400, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	expenses := etc.ExpenseService.FilterExpensesInAMonth(monthFilter)
 
 	context.JSON(200, gin.H{
 		"expenses": expenses,
