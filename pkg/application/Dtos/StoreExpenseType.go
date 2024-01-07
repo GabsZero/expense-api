@@ -1,5 +1,5 @@
 package dtos
 
 type StoreExpenseTypeDto struct {
-	Name string `validate:"required" json: "name" form: "name"`
+	Name string `json:"name" form:"name" validation:"required"`
 }
