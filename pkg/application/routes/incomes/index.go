@@ -11,4 +11,6 @@ type IncomeRoutes struct {
 func (ir *IncomeRoutes) DefineRoutes(router *gin.Engine) {
 	incomeController := controllers.IncomeController{}
 	router.GET("/incomes", incomeController.Index)
+	router.GET("/getIncomesByMonth", incomeController.FindIncomesInAMonth)
+
 }
