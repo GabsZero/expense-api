@@ -30,7 +30,7 @@ func (etr *ExpenseRepository) GetAll(filter models.Expense) []models.Expense {
 	return result
 }
 
-func (etr *ExpenseRepository) GetMonthsByMonth(filter dtos.FilterExpenseMonthDto) []models.Expense {
+func (etr *ExpenseRepository) GetExpensesByMonth(filter dtos.FilterExpenseMonthDto) []models.Expense {
 	result := []models.Expense{}
 	if db == nil {
 		panic("no db instance found")

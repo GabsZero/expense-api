@@ -15,5 +15,5 @@ func (ets *ExpenseService) GetExpenses(filter models.Expense) []models.Expense {
 }
 
 func (ets *ExpenseService) FilterExpensesInAMonth(filter dtos.FilterExpenseMonthDto) []models.Expense {
-	return ets.ExpenseRepository.GetMonthsByMonth(filter)
+	return ets.ExpenseRepository.GetExpensesByMonth(filter)
 }
