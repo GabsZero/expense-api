@@ -28,6 +28,19 @@ func (etc *ExpenseController) Index(context *gin.Context) {
 		"expenses": expenses,
 	})
 }
+func (etc *ExpenseController) Store(context *gin.Context) {
+	enableCors(context)
+	newExpense := dtos.StoreExpense{}
+
+	err := context.Bind(&newExpense)
+	if err != nil {
+		context.JSON(400, gin.H{
+			"message": err.Error(),
+		})
+
+		return
+	}
+}
 
 func (etc *ExpenseController) FindExpensesInAMonth(context *gin.Context) {
 	enableCors(context)
