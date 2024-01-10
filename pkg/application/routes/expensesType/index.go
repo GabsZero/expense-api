@@ -11,6 +11,5 @@ type ExpensesTypeRoutes struct {
 func (etr *ExpensesTypeRoutes) DefineRoutes(router *gin.Engine) {
 	expenseTypeController := controllers.ExpenseTypeController{}
 	router.GET("/getExpensesType", expenseTypeController.GetExpensesType)
-	router.POST("/expenseType", expenseTypeController.Store)
 
 }
