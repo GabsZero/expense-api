@@ -1,6 +1,7 @@
 package repositories
 
 import (
+	"fmt"
 	"time"
 
 	dtos "github.com/gabszero/expenses-api/pkg/application/Dtos"
@@ -28,6 +29,37 @@ func (etr *ExpenseRepository) GetAll(filter models.Expense) []models.Expense {
 	query.Find(&result)
 
 	return result
+}
+
+func (etr *ExpenseRepository) Store(newExpense dtos.StoreExpense) models.Expense {
+	date, err := time.Parse("2006-01-02", newExpense.Date)
+
+	if err != nil {
+		fmt.Println(err)
+		panic(err)
+	}
+
+	expense := models.Expense{
+		Name:               newExpense.Name,
+		Date:               date,
+		CurrentInstallment: newExpense.CurrentInstallment,
+		TotalInstallments:  newExpense.TotalInstallments,
+		ExpenseTypeId:      newExpense.ExpenseTypeId,
+		Amount:             newExpense.Amount,
+		IsPaid:             *newExpense.IsPaid,
+		IsRecurring:        *newExpense.IsRecurring,
+	}
+
+	if db == nil {
+		panic("no db instance found")
+	}
+
+	result := db.Create(&expense)
+
+	fmt.Println(result.Error)
+	fmt.Println(result.RowsAffected)
+
+	return expense
 }
 
 func (etr *ExpenseRepository) GetExpensesByMonth(filter dtos.FilterExpenseMonthDto) []models.Expense {
