@@ -1,8 +1,6 @@
 package controllers
 
 import (
-	"fmt"
-
 	dtos "github.com/gabszero/expenses-api/pkg/application/Dtos"
 	"github.com/gabszero/expenses-api/pkg/domain/services"
 	"github.com/gabszero/expenses-api/pkg/infrastructure/models"
@@ -43,7 +41,6 @@ func (etc *ExpenseController) Store(context *gin.Context) {
 		return
 	}
 
-	fmt.Println(newExpense)
 	expense := etc.ExpenseService.StoreExpense(newExpense)
 
 	context.JSON(200, gin.H{
