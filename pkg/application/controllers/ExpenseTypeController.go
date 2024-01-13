@@ -12,6 +12,7 @@ type ExpenseTypeController struct {
 }
 
 func (etc *ExpenseTypeController) GetExpensesType(context *gin.Context) {
+	enableCors(context)
 	expensesType := etc.ExpenseTypeService.GetExpensesType()
 
 	context.JSON(200, gin.H{
