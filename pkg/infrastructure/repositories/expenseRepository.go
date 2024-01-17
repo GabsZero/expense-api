@@ -77,7 +77,7 @@ func (etr *ExpenseRepository) GetExpensesByMonth(filter dtos.FilterExpenseMonthD
 
 	}
 
-	query.Find(&result)
+	query.Statement.Order("Date").Find(&result)
 
 	return result
 }
