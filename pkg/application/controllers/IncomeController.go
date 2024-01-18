@@ -28,6 +28,26 @@ func (ic *IncomeController) Index(context *gin.Context) {
 	})
 }
 
+func (ic *IncomeController) Store(context *gin.Context) {
+	enableCors(context)
+	newIncome := dtos.StoreIncome{}
+
+	err := context.Bind(&newIncome)
+
+	if err != nil {
+		context.JSON(400, gin.H{
+			"message": err.Error(),
+		})
+		return
+	}
+
+	expense := ic.IncomeService.StoreIncome(newIncome)
+
+	context.JSON(200, gin.H{
+		"expense": expense,
+	})
+}
+
 func (ic *IncomeController) FindIncomesInAMonth(context *gin.Context) {
 	enableCors(context)
 	monthFilter := dtos.FilterIncomeMonthDto{}
