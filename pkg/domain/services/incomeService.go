@@ -17,3 +17,7 @@ func (is *IncomeService) GetIncomes(incomeFilter models.Income) []models.Income 
 func (is *IncomeService) GetIncomesByMonth(filter dtos.FilterIncomeMonthDto) []models.Income {
 	return is.IncomeRepository.GetIncomesByMonth(filter)
 }
+
+func (is *IncomeService) StoreIncome(newIncome dtos.StoreIncome) models.Income {
+	return is.IncomeRepository.Store(newIncome)
+}
