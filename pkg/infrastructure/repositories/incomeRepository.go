@@ -55,3 +55,26 @@ func (ir *IncomeRepository) GetIncomesByMonth(filter dtos.FilterIncomeMonthDto) 
 
 	return result
 }
+
+func (ir *IncomeRepository) Store(newIncome dtos.StoreIncome) models.Income {
+	date, err := time.ParseInLocation("2006-01-02", newIncome.Date, time.Local)
+
+	if err != nil {
+		panic(err)
+	}
+
+	income := models.Income{
+		Name:         newIncome.Name,
+		Date:         date,
+		IncomeTypeId: newIncome.IncomeTypeId,
+		Amount:       newIncome.Amount,
+	}
+
+	if db == nil {
+		panic("no db instance found")
+	}
+
+	db.Create(&income)
+
+	return income
+}
