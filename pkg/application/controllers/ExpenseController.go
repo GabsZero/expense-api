@@ -28,6 +28,7 @@ func (etc *ExpenseController) Index(context *gin.Context) {
 		"expenses": expenses,
 	})
 }
+
 func (etc *ExpenseController) Store(context *gin.Context) {
 	enableCors(context)
 	newExpense := dtos.StoreExpense{}
